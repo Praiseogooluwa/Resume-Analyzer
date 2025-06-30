@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeGenius - AI Resume Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm sticky-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-file-alt text-2xl mr-2 gradient-text"></i>
+                        <span class="text-xl font-bold text-gray-800">Resume<span class="gradient-text">Genius</span></span>
+                    </div>
+                    
+                    <!-- Primary Nav Items (Desktop) -->
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="index.html" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Dashboard</a>
+                        <a href="templates.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Templates</a>
+                        <a href="tips.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Career Tips</a>
+                        <a href="pricing.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Pricing</a>
+                    </div>
+                </div>
+                
+                <!-- Right Nav Items (Desktop) -->
+                <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <button id="notificationsBtn" class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none">
+                        <span class="sr-only">Notifications</span>
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    
+                    <!-- Profile dropdown -->
+                    <div class="ml-3 relative">
+                        <div>
+                            <button id="userMenuButton" class="flex text-sm rounded-full focus:outline-none">
+                                <span class="sr-only">Open user menu</span>
+                                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                            </button>
+                        </div>
+                        <div id="userMenuDropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5">
+                            <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>
+                            <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                            <a href="signout.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                        </div>
+                    </div>
+                    
+                    <button id="upgradeBtn" class="ml-4 gradient-bg text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition">
+                        Upgrade <i class="fas fa-crown ml-1"></i>
+                    </button>
+                </div>
+               <!-- Mobile Profile Dropdown - Right Aligned -->
+<div class="ml-auto md:hidden relative py-2"> <!-- ml-auto pushes it to the right -->
+    <div class="relative">
+        <!-- Profile button -->
+        <button id="mobileProfileButton" class="flex items-center justify-center h-10 w-10 rounded-full focus:outline-none">
+            <span class="sr-only">Open user menu</span>
+            <img class="h-8 w-8 rounded-full object-cover" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="User profile">
+        </button>
+
+        <!-- Mobile menu - right-aligned dropdown -->
+        <div id="mobileProfileMenu" class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 py-1 hidden origin-top-right transition-all duration-100">
+            <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                <i class="fas fa-user mr-2"></i> Your Profile
+            </a>
+            <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                <i class="fas fa-cog mr-2"></i> Settings
+            </a>
+            <a href="signout.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                <i class="fas fa-sign-out-alt mr-2"></i> Sign Out
+            </a>
+        </div>
+    </div>
+</div>
+                
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button id="mobileMenuButton" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Sidebar Overlay -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+    
+    <!-- Mobile Sidebar -->
+    <div id="mobileSidebar" class="mobile-sidebar bg-white border-r border-gray-200">
+        <div class="flex flex-col h-full pt-5 pb-4 overflow-y-auto">
+            <!-- Mobile Sidebar User Profile -->
+            <div class="flex items-center flex-shrink-0 px-4 mb-6">
+                <div class="bg-indigo-100 p-2 rounded-lg mr-3">
+                    <i class="fas fa-user text-indigo-600"></i>
+                </div>
+                <div>
+                    <p class="font-medium text-gray-900">John Doe</p>
+                    <p class="text-sm text-gray-500">Premium Member</p>
+                </div>
+                <button id="closeSidebar" class="ml-auto text-gray-400 hover:text-gray-500">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Sidebar Menu Items -->
+            <nav class="flex-1 px-2 space-y-1">
+                <a href="index.html" class="sidebar-item active text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-chart-pie text-gray-500 mr-3 flex-shrink-0"></i>
+                    Dashboard
+                </a>
+                
+                <a href="my-resumes.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-file-alt text-gray-500 mr-3 flex-shrink-0"></i>
+                    My Resumes
+                </a>
+                
+                <a href="builder.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-magic text-gray-500 mr-3 flex-shrink-0"></i>
+                    Resume Builder
+                </a>
+                
+                <a href="matcher.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-search text-gray-500 mr-3 flex-shrink-0"></i>
+                    Job Matcher
+                </a>
+                
+                <a href="alert.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-bell text-gray-500 mr-3 flex-shrink-0"></i>
+                    Alerts
+                </a>
+                
+                <a href="settings.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-cog text-gray-500 mr-3 flex-shrink-0"></i>
+                    Settings
+                </a>
+
+                <a href="templates.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-clone text-gray-500 mr-3 flex-shrink-0"></i>
+                    Templates
+                </a>
+
+                <a href="tips.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-briefcase text-gray-500 mr-3 flex-shrink-0"></i>
+                    Career Tips
+                </a>
+
+                <a href="pricing.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-dollar-sign text-gray-500 mr-3 flex-shrink-0"></i>
+                    Pricing
+                </a>
+            </nav>
+            
+            <!-- Mobile Sidebar Upgrade Banner -->
+            <div class="mt-auto px-4 py-4">
+                <div class="bg-indigo-50 rounded-lg p-3 text-center">
+                    <p class="text-xs text-indigo-600 font-medium mb-1">UPGRADE TO PRO</p>
+                    <p class="text-xs text-gray-600 mb-2">Unlock all features and templates</p>
+                    <button id="mobileUpgradeBtn" class="w-full gradient-bg text-white py-1 rounded-md text-xs font-medium hover:opacity-90 transition">
+                        Upgrade Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flex flex-1 overflow-hidden">
+        <!-- Desktop Sidebar Navigation -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 bg-white border-r border-gray-200">
+                <div class="h-0 flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+                    <!-- Sidebar User Profile -->
+                    <div class="flex items-center flex-shrink-0 px-4 mb-6">
+                        <div class="bg-indigo-100 p-2 rounded-lg mr-3">
+                            <i class="fas fa-user text-indigo-600"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-900">John Doe</p>
+                            <p class="text-sm text-gray-500">Premium Member</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Sidebar Menu Items -->
+                    <nav class="mt-2 flex-1 px-2 space-y-1">
+                        <a href="index.html" class="sidebar-item active text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-chart-pie text-gray-500 mr-3 flex-shrink-0"></i>
+                            Dashboard
+                        </a>
+                        
+                        <a href="my-resumes.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-file-alt text-gray-500 mr-3 flex-shrink-0"></i>
+                            My Resumes
+                        </a>
+                        
+                        <a href="builder.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-magic text-gray-500 mr-3 flex-shrink-0"></i>
+                            Resume Builder
+                        </a>
+                        
+                        <a href="matcher.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-search text-gray-500 mr-3 flex-shrink-0"></i>
+                            Job Matcher
+                        </a>
+                        
+                        <a href="alert.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-bell text-gray-500 mr-3 flex-shrink-0"></i>
+                            Alerts
+                        </a>
+                        
+                        <a href="settings.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-cog text-gray-500 mr-3 flex-shrink-0"></i>
+                            Settings
+                        </a>
+                    </nav>
+                    
+                    <!-- Sidebar Upgrade Banner -->
+                    <div class="mt-auto px-4 py-4">
+                        <div class="bg-indigo-50 rounded-lg p-3 text-center">
+                            <p class="text-xs text-indigo-600 font-medium mb-1">UPGRADE TO PRO</p>
+                            <p class="text-xs text-gray-600 mb-2">Unlock all features and templates</p>
+                            <button id="desktopUpgradeBtn" class="w-full gradient-bg text-white py-1 rounded-md text-xs font-medium hover:opacity-90 transition">
+                                Upgrade Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content Area -->
+        <div class="flex-1 overflow-auto">
+            <!-- Page Header -->
+            <header class="gradient-bg text-white">
+                <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h1 class="text-2xl font-bold">Resume Analysis Dashboard</h1>
+                            <p class="text-indigo-100">Get AI-powered insights to improve your resume</p>
+                        </div>
+                        <button id="newAnalysisBtn" class="bg-white text-indigo-600 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-100 transition">
+                            <i class="fas fa-plus mr-1"></i> New Analysis
+                        </button>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Main Content -->
+            <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                <!-- Status Cards -->
+                <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-6">
+                    <!-- Resumes Analyzed Card -->
+                    <div class="bg-white overflow-hidden shadow rounded-lg analysis-card">
+                        <div class="px-4 py-5 sm:p-6">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 bg-indigo-100 rounded-md p-3">
+                                    <i class="fas fa-file-alt text-indigo-600"></i>
+                                </div>
+                                <div class="ml-5 w-0 flex-1">
+                                    <dt class="text-sm font-medium text-gray-500 truncate">Resumes Analyzed</dt>
+                                    <dd class="flex items-baseline">
+                                        <div class="text-2xl font-semibold text-gray-900">12</div>
+                                        <div class="ml-2 flex items-baseline text-sm font-semibold text-green-600">
+                                            <i class="fas fa-arrow-up text-xs"></i>
+                                            <span class="sr-only">Increased by</span>
+                                            3
+                                        </div>
+                                    </dd>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Average Score Card -->
+                    <div class="bg-white overflow-hidden shadow rounded-lg analysis-card">
+                        <div class="px-4 py-5 sm:p-6">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 bg-green-100 rounded-md p-3">
+                                    <i class="fas fa-chart-line text-green-600"></i>
+                                </div>
+                                <div class="ml-5 w-0 flex-1">
+                                    <dt class="text-sm font-medium text-gray-500 truncate">Average Score</dt>
+                                    <dd class="flex items-baseline">
+                                        <div class="text-2xl font-semibold text-gray-900">78%</div>
+                                        <div class="ml-2 flex items-baseline text-sm font-semibold text-green-600">
+                                            <i class="fas fa-arrow-up text-xs"></i>
+                                            <span class="sr-only">Increased by</span>
+                                            5%
+                                        </div>
+                                    </dd>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Job Matches Card -->
+                    <div class="bg-white overflow-hidden shadow rounded-lg analysis-card">
+                        <div class="px-4 py-5 sm:p-6">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 bg-purple-100 rounded-md p-3">
+                                    <i class="fas fa-briefcase text-purple-600"></i>
+                                </div>
+                                <div class="ml-5 w-0 flex-1">
+                                    <dt class="text-sm font-medium text-gray-500 truncate">Job Matches</dt>
+                                    <dd class="flex items-baseline">
+                                        <div class="text-2xl font-semibold text-gray-900">24</div>
+                                        <div class="ml-2 flex items-baseline text-sm font-semibold text-green-600">
+                                            <i class="fas fa-arrow-up text-xs"></i>
+                                            <span class="sr-only">Increased by</span>
+                                            8
+                                        </div>
+                                    </dd>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Improvements Card -->
+                    <div class="bg-white overflow-hidden shadow rounded-lg analysis-card">
+                        <div class="px-4 py-5 sm:p-6">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 bg-yellow-100 rounded-md p-3">
+                                    <i class="fas fa-star text-yellow-600"></i>
+                                </div>
+                                <div class="ml-5 w-0 flex-1">
+                                    <dt class="text-sm font-medium text-gray-500 truncate">Improvements</dt>
+                                    <dd class="flex items-baseline">
+                                        <div class="text-2xl font-semibold text-gray-900">15</div>
+                                        <div class="ml-2 flex items-baseline text-sm font-semibold text-red-600">
+                                            <i class="fas fa-arrow-down text-xs"></i>
+                                            <span class="sr-only">Decreased by</span>
+                                            2
+                                        </div>
+                                    </dd>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Content Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Left Column (Upload and Analysis) -->
+                    <div class="lg:col-span-2 space-y-6">
+                        <!-- Upload Card -->
+                        <div class="bg-white shadow rounded-lg analysis-card">
+                            <div class="px-6 py-5">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-medium text-gray-900">Analyze Your Resume</h3>
+                                    <div class="tooltip">
+                                        <i class="fas fa-info-circle text-gray-400 cursor-pointer"></i>
+                                        <span class="tooltip-text">Upload your resume to get AI-powered analysis</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <div class="file-upload p-8 rounded-lg text-center mb-4 cursor-pointer" id="dropZone">
+                                        <input type="file" id="resumeUpload" class="hidden" accept=".pdf,.doc,.docx,.txt">
+                                        <div class="flex flex-col items-center justify-center">
+                                            <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
+                                            <p class="text-gray-500 mb-2">Drag & drop your resume here</p>
+                                            <p class="text-gray-400 text-sm mb-4">or</p>
+                                            <label for="resumeUpload" class="gradient-bg text-white px-6 py-2 rounded-md font-medium hover:opacity-90 transition cursor-pointer">
+                                                Browse Files
+                                            </label>
+                                            <p class="text-gray-400 text-xs mt-4">Supports: PDF, DOC, DOCX, TXT (Max 5MB)</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="fileInfo" class="hidden bg-gray-50 p-4 rounded-lg mb-4">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-file-alt text-indigo-600 text-xl mr-3"></i>
+                                                <div>
+                                                    <p class="font-medium text-gray-800" id="fileName">Resume.pdf</p>
+                                                    <p class="text-gray-500 text-sm" id="fileSize">2.4 MB</p>
+                                                </div>
+                                            </div>
+                                            <button id="removeFile" class="text-gray-400 hover:text-red-500">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                        <div class="progress-bar mt-3">
+                                            <div class="progress-fill" id="uploadProgress" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Job Description Input (Hidden by default) -->
+                                    <div id="jobDescriptionContainer" class="hidden mb-4">
+                                        <label for="jobDescription" class="block text-sm font-medium text-gray-700 mb-2">Paste Job Description (Optional)</label>
+                                        <textarea id="jobDescription" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md p-2" placeholder="Paste the job description here for targeted analysis..."></textarea>
+                                    </div>
+                                    
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="analyzeForJob" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                            <label for="analyzeForJob" class="ml-2 block text-sm text-gray-700">Analyze for specific job</label>
+                                        </div>
+                                        <button id="analyzeBtn" class="gradient-bg text-white px-6 py-2 rounded-md font-medium hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                                            <span id="analyzeText">Analyze Now</span>
+                                            <span id="analyzingText" class="hidden">
+                                                <i class="fas fa-circle-notch fa-spin mr-1"></i> Analyzing...
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Analysis Results Card (Initially Hidden) -->
+                        <div class="bg-white shadow rounded-lg analysis-card hidden animate-in" id="analysisResults">
+                            <div class="px-6 py-5">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-medium text-gray-900">AI-Powered Analysis Results</h3>
+                                    <div class="flex space-x-2">
+                                        <button class="text-indigo-600 hover:text-indigo-800 transition tooltip" id="downloadReport">
+                                            <i class="fas fa-download"></i>
+                                            <span class="tooltip-text">Download full report</span>
+                                        </button>
+                                        <button class="text-indigo-600 hover:text-indigo-800 transition tooltip" id="shareResults">
+                                            <i class="fas fa-share-alt"></i>
+                                            <span class="tooltip-text">Share results</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Overall Score -->
+                                <div class="mt-6 bg-gray-50 p-4 rounded-lg">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <h4 class="font-medium text-gray-800">Overall Resume Score</h4>
+                                        <div class="text-2xl font-bold gradient-text" id="overallScore">78</div>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="overallScoreBar" style="width: 78%"></div>
+                                    </div>
+                                    <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                        <span>Needs Work</span>
+                                        <span>Excellent</span>
+                                    </div>
+                                    <div class="mt-2 text-sm text-gray-600" id="scoreFeedback">
+                                        Your resume is good but could be stronger with more quantifiable achievements and targeted keywords.
+                                    </div>
+                                </div>
+                                
+                                <!-- AI Keyword Analysis -->
+                                <div class="mt-6" id="keywordAnalysisSection">
+                                    <h4 class="font-medium text-gray-800 mb-3">Keyword Analysis</h4>
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4">
+                                        <div class="mb-4">
+                                            <h5 class="font-medium text-gray-700 mb-2">Strong Keywords Found:</h5>
+                                            <div id="matchedKeywords">
+                                                <span class="keyword-bubble">Project Management</span>
+                                                <span class="keyword-bubble">Agile</span>
+                                                <span class="keyword-bubble">Team Leadership</span>
+                                                <span class="keyword-bubble">Budget Management</span>
+                                                <span class="keyword-bubble">Stakeholder Engagement</span>
+                                            </div>
+                                        </div>
+                                        <div id="missingKeywordsSection">
+                                            <h5 class="font-medium text-gray-700 mb-2">Missing Keywords:</h5>
+                                            <div id="missingKeywords">
+                                                <span class="missing-keyword">Scrum Master</span>
+                                                <span class="missing-keyword">JIRA</span>
+                                                <span class="missing-keyword">Risk Assessment</span>
+                                            </div>
+                                            <p class="text-xs text-gray-500 mt-2">Consider adding these keywords to better match job requirements.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Detailed Analysis -->
+                                <div class="mt-6">
+                                    <h4 class="font-medium text-gray-800 mb-3">Detailed Analysis</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <!-- Content Quality -->
+                                        <div class="bg-white border border-gray-200 rounded-lg p-4">
+                                            <div class="flex items-center mb-2">
+                                                <div class="bg-blue-100 p-2 rounded-full mr-3">
+                                                    <i class="fas fa-align-left text-blue-600"></i>
+                                                </div>
+                                                <h5 class="font-medium text-gray-800">Content Quality</h5>
+                                            </div>
+                                            <div class="skill-meter">
+                                                <div class="skill-level" style="width: 65%"></div>
+                                            </div>
+                                            <p class="text-xs text-gray-500 mt-2">Focus on quantifying achievements and action verbs.</p>
+                                            <div class="ai-suggestion text-xs text-gray-700 mt-2">
+                                                Example: "Increased team productivity by 25% through implementation of Agile methodologies"
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Keyword Optimization -->
+                                        <div class="bg-white border border-gray-200 rounded-lg p-4">
+                                            <div class="flex items-center mb-2">
+                                                <div class="bg-purple-100 p-2 rounded-full mr-3">
+                                                    <i class="fas fa-key text-purple-600"></i>
+                                                </div>
+                                                <h5 class="font-medium text-gray-800">Keyword Optimization</h5>
+                                            </div>
+                                            <div class="skill-meter">
+                                                <div class="skill-level" style="width: 82%"></div>
+                                            </div>
+                                            <p class="text-xs text-gray-500 mt-2">Good industry keyword matching.</p>
+                                            <div class="ai-suggestion text-xs text-gray-700 mt-2">
+                                                Add 2-3 more technical skills specific to your target roles.
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Formatting -->
+                                        <div class="bg-white border border-gray-200 rounded-lg p-4">
+                                            <div class="flex items-center mb-2">
+                                                <div class="bg-yellow-100 p-2 rounded-full mr-3">
+                                                    <i class="fas fa-paint-brush text-yellow-600"></i>
+                                                </div>
+                                                <h5 class="font-medium text-gray-800">Formatting</h5>
+                                            </div>
+                                            <div class="skill-meter">
+                                                <div class="skill-level" style="width: 74%"></div>
+                                            </div>
+                                            <p class="text-xs text-gray-500 mt-2">Clean layout with good readability.</p>
+                                            <div class="ai-suggestion text-xs text-gray-700 mt-2">
+                                                Consider adding more white space between sections for better scannability.
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Impact -->
+                                        <div class="bg-white border border-gray-200 rounded-lg p-4">
+                                            <div class="flex items-center mb-2">
+                                                <div class="bg-green-100 p-2 rounded-full mr-3">
+                                                    <i class="fas fa-bullseye text-green-600"></i>
+                                                </div>
+                                                <h5 class="font-medium text-gray-800">Impact</h5>
+                                            </div>
+                                            <div class="skill-meter">
+                                                <div class="skill-level" style="width: 58%"></div>
+                                            </div>
+                                            <p class="text-xs text-gray-500 mt-2">Focus more on achievements.</p>
+                                            <div class="ai-suggestion text-xs text-gray-700 mt-2">
+                                                Use the STAR method (Situation, Task, Action, Result) to highlight accomplishments.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Improvement Suggestions -->
+                                <div class="mt-6">
+                                    <h4 class="font-medium text-gray-800 mb-3">AI Improvement Suggestions</h4>
+                                    <div class="space-y-3" id="improvementSuggestions">
+                                        <div class="flex items-start ai-highlight">
+                                            <div class="flex-shrink-0 bg-green-100 p-1 rounded-full mt-1">
+                                                <i class="fas fa-check-circle text-green-600 text-xs"></i>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-800">Strong professional summary</p>
+                                                <p class="text-xs text-gray-500">Your summary highlights key qualifications well.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex items-start ai-highlight">
+                                            <div class="flex-shrink-0 bg-yellow-100 p-1 rounded-full mt-1">
+                                                <i class="fas fa-exclamation-circle text-yellow-600 text-xs"></i>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-800">Add more metrics</p>
+                                                <p class="text-xs text-gray-500">Quantify achievements (e.g., "Increased sales by 30%").</p>
+                                                <div class="ai-suggestion text-xs text-gray-700 mt-2">
+                                                    Found 3 opportunities in your experience section where you could add metrics.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex items-start ai-highlight">
+                                            <div class="flex-shrink-0 bg-red-100 p-1 rounded-full mt-1">
+                                                <i class="fas fa-times-circle text-red-600 text-xs"></i>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-800">Remove outdated skills</p>
+                                                <p class="text-xs text-gray-500">Skills like "MS Office" are expected.</p>
+                                                <div class="ai-suggestion text-xs text-gray-700 mt-2">
+                                                    Replace with in-demand skills like "Data Analysis" or "Cloud Computing".
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- AI Rewrite Suggestion -->
+                                <div class="mt-6 bg-indigo-50 rounded-lg p-4 hidden" id="rewriteSuggestion">
+                                    <h4 class="font-medium text-gray-800 mb-2">AI Rewrite Suggestion</h4>
+                                    <div class="bg-white p-3 rounded border border-gray-200 mb-2">
+                                        <p class="text-sm text-gray-700 font-medium mb-1">Original:</p>
+                                        <p class="text-sm text-gray-600 mb-3" id="originalText">Managed a team of developers to deliver software projects</p>
+                                        <p class="text-sm text-gray-700 font-medium mb-1">Improved Version:</p>
+                                        <p class="text-sm text-gray-800" id="rewrittenText">Led a cross-functional team of 8 developers to deliver 12+ software projects on time and under budget, resulting in a 95% client satisfaction rate</p>
+                                    </div>
+                                    <button class="text-indigo-600 text-sm font-medium hover:text-indigo-800 transition" id="copyRewriteBtn">
+                                        <i class="fas fa-copy mr-1"></i> Copy to Clipboard
+                                    </button>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="mt-6 flex justify-between">
+                                    <button class="text-indigo-600 hover:text-indigo-800 font-medium transition" id="reanalyzeBtn">
+                                        <i class="fas fa-redo mr-2"></i> Re-analyze
+                                    </button>
+                                    <button class="gradient-bg text-white px-4 py-2 rounded-md font-medium hover:opacity-90 transition" id="autoImproveBtn">
+                                        <i class="fas fa-magic mr-2"></i> Auto-Improve
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column (Job Matches and History) -->
+                    <div class="space-y-6">
+                        <!-- Top Job Matches Card -->
+                        <div class="bg-white shadow rounded-lg analysis-card">
+                            <div class="px-6 py-5">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-medium text-gray-900">Top Job Matches</h3>
+                                    <button class="text-indigo-600 hover:text-indigo-800 transition" id="refreshMatches">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="mt-4 space-y-4" id="jobMatchesList">
+                                    <!-- Job Match 1 -->
+                                    <a href="#job1" class="block hover:bg-gray-50 -mx-2 px-2 py-1 rounded">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 bg-indigo-100 p-2 rounded-full mt-1">
+                                                <i class="fas fa-briefcase text-indigo-600 text-xs"></i>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-800">Senior Project Manager</p>
+                                                <p class="text-xs text-gray-500">Tech Solutions Inc. • 92% match</p>
+                                                <div class="mt-1 flex space-x-2">
+                                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-indigo-100 text-indigo-800">Remote</span>
+                                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">$120k</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <!-- Job Match 2 -->
+                                    <a href="#job2" class="block hover:bg-gray-50 -mx-2 px-2 py-1 rounded">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 bg-purple-100 p-2 rounded-full mt-1">
+                                                <i class="fas fa-briefcase text-purple-600 text-xs"></i>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-800">Operations Director</p>
+                                                <p class="text-xs text-gray-500">Global Enterprises • 88% match</p>
+                                                <div class="mt-1 flex space-x-2">
+                                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-indigo-100 text-indigo-800">Hybrid</span>
+                                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">$150k</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <!-- Job Match 3 -->
+                                    <a href="#job3" class="block hover:bg-gray-50 -mx-2 px-2 py-1 rounded">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 bg-blue-100 p-2 rounded-full mt-1">
+                                                <i class="fas fa-briefcase text-blue-600 text-xs"></i>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-800">Product Lead</p>
+                                                <p class="text-xs text-gray-500">Innovate Co. • 85% match</p>
+                                                <div class="mt-1 flex space-x-2">
+                                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-indigo-100 text-indigo-800">On-site</span>
+                                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">$135k</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="mt-4 text-center">
+                                    <a href="#all-matches" class="text-indigo-600 hover:text-indigo-800 font-medium text-sm transition" id="viewAllMatches">
+                                        View all matches <i class="fas fa-chevron-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Resume History Card -->
+                        <div class="bg-white shadow rounded-lg analysis-card">
+                            <div class="px-6 py-5">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-medium text-gray-900">Recent Analyses</h3>
+                                    <a href="#all-analyses" class="text-indigo-600 hover:text-indigo-800 transition" id="viewAllAnalyses">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </a>
+                                </div>
+                                
+                                <div class="mt-4 space-y-4" id="analysesHistory">
+                                    <!-- Analysis 1 -->
+                                    <a href="#analysis1" class="block hover:bg-gray-50 -mx-2 px-2 py-1 rounded">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center">
+                                                <div class="bg-indigo-100 p-2 rounded-lg mr-3">
+                                                    <i class="fas fa-file-alt text-indigo-600"></i>
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-800">Resume_v3.pdf</p>
+                                                    <p class="text-xs text-gray-500">Today • 78% score</p>
+                                                </div>
+                                            </div>
+                                            <i class="fas fa-chevron-right text-gray-400"></i>
+                                        </div>
+                                    </a>
+                                    
+                                    <!-- Analysis 2 -->
+                                    <a href="#analysis2" class="block hover:bg-gray-50 -mx-2 px-2 py-1 rounded">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center">
+                                                <div class="bg-green-100 p-2 rounded-lg mr-3">
+                                                    <i class="fas fa-file-alt text-green-600"></i>
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-800">Resume_v2.pdf</p>
+                                                    <p class="text-xs text-gray-500">3 days ago • 72% score</p>
+                                                </div>
+                                            </div>
+                                            <i class="fas fa-chevron-right text-gray-400"></i>
+                                        </div>
+                                    </a>
+                                    
+                                    <!-- Analysis 3 -->
+                                    <a href="#analysis3" class="block hover:bg-gray-50 -mx-2 px-2 py-1 rounded">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center">
+                                                <div class="bg-yellow-100 p-2 rounded-lg mr-3">
+                                                    <i class="fas fa-file-alt text-yellow-600"></i>
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-800">Resume_v1.pdf</p>
+                                                    <p class="text-xs text-gray-500">1 week ago • 70% score</p>
+                                                </div>
+                                            </div>
+                                            <i class="fas fa-chevron-right text-gray-400"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- AI Tips Card -->
+                        <div class="bg-white shadow rounded-lg analysis-card">
+                            <div class="px-6 py-5">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-medium text-gray-900">AI Career Tips</h3>
+                                    <i class="fas fa-robot text-indigo-600"></i>
+                                </div>
+                                
+                                <div class="mt-4 space-y-3">
+                                    <div class="ai-suggestion text-sm text-gray-700">
+                                        <strong>Tip:</strong> Customize your resume for each job application by matching keywords from the job description.
+                                    </div>
+                                    <div class="ai-suggestion text-sm text-gray-700">
+                                        <strong>Tip:</strong> Keep your resume to 1-2 pages maximum. Recruiters spend an average of 7 seconds on initial screening.
+                                    </div>
+                                    <div class="ai-suggestion text-sm text-gray-700">
+                                        <strong>Tip:</strong> Use strong action verbs like "Led", "Developed", "Implemented" to start bullet points.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            
+            <!-- Footer -->
+            <footer class="bg-white shadow-inner">
+                <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between items-center">
+                        <p class="text-gray-500 text-sm">© 2025 ResumeGenius. Praise Ogooluwa.</p>
+                        <div class="flex space-x-4">
+                            <a href="privacy.html" class="text-gray-500 hover:text-gray-800">Privacy Policy</a>
+                            <a href="terms.html" class="text-gray-500 hover:text-gray-800">Terms of Service</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
+        // Notification Bell Click Handler
+        document.getElementById('notificationsBtn').addEventListener('click', function() {
+            alert('Notifications feature is under development.');
+            // You can replace this with a dropdown or modal showing notifications.
+        });
+
+        // Upgrade to Premium Click Handler
+        document.getElementById('upgradeBtn').addEventListener('click', function() {
+            alert('Upgrade to Premium feature is under development.');
+            // Redirect to pricing page or show a modal with upgrade options.
+            // window.location.href = 'pricing.html';
+        });
+
+        // New Analysis Click Handler
+        document.getElementById('newAnalysisBtn').addEventListener('click', function() {
+            alert('New Analysis feature is under development.');
+            // Trigger resume analysis functionality here.
+        });
+
+        // Refresh Matches Click Handler
+        document.getElementById('refreshMatchesBtn').addEventListener('click', function() {
+            alert('Refreshing Matches feature is under development.');
+            // Refresh job matches dynamically here.
+        });
+    </script>
+</body>
+</html>

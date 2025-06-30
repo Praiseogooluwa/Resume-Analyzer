@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeGenius - Templates</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm sticky-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-file-alt text-2xl mr-2 gradient-text"></i>
+                        <span class="text-xl font-bold text-gray-800">Resume<span class="gradient-text">Genius</span></span>
+                    </div>
+                    
+                    <!-- Primary Nav Items -->
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="index.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Dashboard</a>
+                        <a href="templates.html" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Templates</a>
+                        <a href="tips.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Career Tips</a>
+                        <a href="pricing.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Pricing</a>
+                    </div>
+                </div>
+                
+                <!-- Right Nav Items -->
+                <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <button id="notificationsBtn" class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none">
+                        <span class="sr-only">Notifications</span>
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    
+                    <!-- Profile dropdown -->
+                    <div class="ml-3 relative">
+                        <button id="userMenuButton" class="flex text-sm rounded-full focus:outline-none">
+                            <span class="sr-only">Open user menu</span>
+                            <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                        </button>
+                        <div id="userMenuDropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>
+                            <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                        </div>
+                    </div>
+                    
+                    <button id="upgradeBtn" class="ml-4 gradient-bg text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition">
+                        Upgrade <i class="fas fa-crown ml-1"></i>
+                    </button>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button id="mobileMenuButton" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Sidebar -->
+    <div id="mobileSidebar" class="mobile-sidebar bg-white border-r border-gray-200">
+        <div class="flex flex-col h-full pt-5 pb-4 overflow-y-auto">
+            <nav class="flex-1 px-2 space-y-1">
+                <a href="index.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-chart-pie text-gray-500 mr-3 flex-shrink-0"></i>
+                    Dashboard
+                </a>
+                <a href="templates.html" class="sidebar-item active text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-file-alt text-gray-500 mr-3 flex-shrink-0"></i>
+                    Templates
+                </a>
+                <a href="tips.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-lightbulb text-gray-500 mr-3 flex-shrink-0"></i>
+                    Career Tips
+                </a>
+                <a href="pricing.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-dollar-sign text-gray-500 mr-3 flex-shrink-0"></i>
+                    Pricing
+                </a>
+                <a href="#" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-bell text-gray-500 mr-3 flex-shrink-0"></i>
+                    Notifications
+                </a>
+                <a href="settings.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-cog text-gray-500 mr-3 flex-shrink-0"></i>
+                    Settings
+                </a>
+                <a href="#" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-user text-gray-500 mr-3 flex-shrink-0"></i>
+                    Profile
+                </a>
+                <a href="#" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-crown text-gray-500 mr-3 flex-shrink-0"></i>
+                    Upgrade
+                </a>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <header class="gradient-bg text-white py-8 px-4 sm:px-6 lg:px-8 rounded-lg shadow">
+            <h1 class="text-2xl font-bold">Resume Templates</h1>
+            <p class="text-indigo-100">Choose from professionally designed templates to make your resume stand out.</p>
+        </header>
+        
+        <section class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Template Card -->
+            <div class="bg-white shadow rounded-lg p-4">
+                <img src="images/template1.jpg" alt="Template 1" class="rounded-lg mb-4">
+                <h3 class="text-lg font-medium text-gray-800">Modern Template</h3>
+                <p class="text-sm text-gray-500">A clean and modern design suitable for all industries.</p>
+                <button class="gradient-bg text-white px-4 py-2 rounded-md text-sm font-medium mt-4 hover:opacity-90 transition">
+                    Use Template
+                </button>
+            </div>
+            
+            <!-- Repeat for other templates -->
+            <div class="bg-white shadow rounded-lg p-4">
+                <img src="images/template2.jpg" alt="Template 2" class="rounded-lg mb-4">
+                <h3 class="text-lg font-medium text-gray-800">Professional Template</h3>
+                <p class="text-sm text-gray-500">A polished design ideal for corporate roles.</p>
+                <button class="gradient-bg text-white px-4 py-2 rounded-md text-sm font-medium mt-4 hover:opacity-90 transition">
+                    Use Template
+                </button>
+            </div>
+            
+            <div class="bg-white shadow rounded-lg p-4">
+                <img src="images/template3.jpg" alt="Template 3" class="rounded-lg mb-4">
+                <h3 class="text-lg font-medium text-gray-800">Creative Template</h3>
+                <p class="text-sm text-gray-500">A vibrant design perfect for creative professionals.</p>
+                <button class="gradient-bg text-white px-4 py-2 rounded-md text-sm font-medium mt-4 hover:opacity-90 transition">
+                    Use Template
+                </button>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="bg-white shadow-inner py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <p class="text-gray-500 text-sm">© 2025 ResumeGenius. Praise Ogooluwa.</p>
+                <div class="flex space-x-4">
+                    <a href="privacy.html" class="text-gray-500 hover:text-gray-800">Privacy Policy</a>
+                    <a href="terms.html" class="text-gray-500 hover:text-gray-800">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="js/main.js"></script>
+</body>
+</html>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const templatesContainer = document.querySelector('section.grid');
+        const searchInput = document.createElement('input');
+        const filterSelect = document.createElement('select');
+        const templates = [
+            { id: 1, name: 'Modern Template', description: 'A clean and modern design suitable for all industries.', image: 'images/template1.jpg', category: 'Modern' },
+            { id: 2, name: 'Professional Template', description: 'A polished design ideal for corporate roles.', image: 'images/template2.jpg', category: 'Professional' },
+            { id: 3, name: 'Creative Template', description: 'A vibrant design perfect for creative professionals.', image: 'images/template3.jpg', category: 'Creative' },
+            { id: 4, name: 'Minimal Template', description: 'A simple and elegant design for any role.', image: 'images/template4.jpg', category: 'Minimal' },
+            { id: 5, name: 'Classic Template', description: 'A timeless design for traditional industries.', image: 'images/template5.jpg', category: 'Classic' },
+        ];
+
+        // Add search input
+        searchInput.type = 'text';
+        searchInput.placeholder = 'Search templates...';
+        searchInput.className = 'border border-gray-300 rounded-md px-4 py-2 mb-4 w-full';
+        templatesContainer.parentElement.insertBefore(searchInput, templatesContainer);
+
+        // Add filter dropdown
+        filterSelect.className = 'border border-gray-300 rounded-md px-4 py-2 mb-4 w-full';
+        filterSelect.innerHTML = `
+            <option value="">All Categories</option>
+            <option value="Modern">Modern</option>
+            <option value="Professional">Professional</option>
+            <option value="Creative">Creative</option>
+            <option value="Minimal">Minimal</option>
+            <option value="Classic">Classic</option>
+        `;
+        templatesContainer.parentElement.insertBefore(filterSelect, templatesContainer);
+
+        // Render templates dynamically
+        function renderTemplates(filter = '', search = '') {
+            templatesContainer.innerHTML = '';
+            const filteredTemplates = templates.filter(template => {
+                return (!filter || template.category === filter) &&
+                       (!search || template.name.toLowerCase().includes(search.toLowerCase()));
+            });
+
+            filteredTemplates.forEach(template => {
+                const templateCard = document.createElement('div');
+                templateCard.className = 'bg-white shadow rounded-lg p-4';
+                templateCard.innerHTML = `
+                    <img src="${template.image}" alt="${template.name}" class="rounded-lg mb-4">
+                    <h3 class="text-lg font-medium text-gray-800">${template.name}</h3>
+                    <p class="text-sm text-gray-500">${template.description}</p>
+                    <button class="gradient-bg text-white px-4 py-2 rounded-md text-sm font-medium mt-4 hover:opacity-90 transition" onclick="previewTemplate(${template.id})">
+                        Preview Template
+                    </button>
+                `;
+                templatesContainer.appendChild(templateCard);
+            });
+        }
+
+        // Preview template
+        function previewTemplate(id) {
+            const template = templates.find(t => t.id === id);
+            if (template) {
+                const modal = document.createElement('div');
+                modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+                modal.innerHTML = `
+                    <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg w-full">
+                        <img src="${template.image}" alt="${template.name}" class="rounded-lg mb-4">
+                        <h3 class="text-lg font-medium text-gray-800">${template.name}</h3>
+                        <p class="text-sm text-gray-500">${template.description}</p>
+                        <button class="gradient-bg text-white px-4 py-2 rounded-md text-sm font-medium mt-4 hover:opacity-90 transition" onclick="useTemplate(${template.id})">
+                            Use Template
+                        </button>
+                        <button class="text-gray-500 hover:text-gray-800 mt-4" onclick="closeModal(this)">Close</button>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            }
+        }
+
+        // Use template
+        function useTemplate(id) {
+            alert(`Template ${id} selected!`);
+        }
+
+        // Close modal
+        function closeModal(button) {
+            button.closest('.fixed').remove();
+        }
+
+        // Event listeners for search and filter
+        searchInput.addEventListener('input', () => renderTemplates(filterSelect.value, searchInput.value));
+        filterSelect.addEventListener('change', () => renderTemplates(filterSelect.value, searchInput.value));
+
+        // Initial render
+        renderTemplates();
+    });
+</script>

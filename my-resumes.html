@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeGenius - My Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm sticky-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-file-alt text-2xl mr-2 gradient-text"></i>
+                        <span class="text-xl font-bold text-gray-800">Resume<span class="gradient-text">Genius</span></span>
+                    </div>
+                    
+                    <!-- Primary Nav Items -->
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="index.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Dashboard</a>
+                        <a href="templates.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Templates</a>
+                        <a href="tips.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Career Tips</a>
+                        <a href="pricing.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Pricing</a>
+                        <a href="my-resume.html" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">My Resume</a>
+                    </div>
+                </div>
+                
+                <!-- Right Nav Items -->
+                <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <button id="notificationsBtn" class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none">
+                        <span class="sr-only">Notifications</span>
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    
+                    <!-- Profile dropdown -->
+                    <div class="ml-3 relative">
+                        <button id="userMenuButton" class="flex text-sm rounded-full focus:outline-none">
+                            <span class="sr-only">Open user menu</span>
+                            <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                        </button>
+                        <div id="userMenuDropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>
+                            <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                        </div>
+                    </div>
+                    
+                    <button id="upgradeBtn" class="ml-4 gradient-bg text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition">
+                        Upgrade <i class="fas fa-crown ml-1"></i>
+                    </button>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button id="mobileMenuButton" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+    
+    <!-- Mobile Sidebar -->
+    <div id="mobileSidebar" class="mobile-sidebar bg-white border-r border-gray-200">
+        <div class="flex flex-col h-full pt-5 pb-4 overflow-y-auto">
+            <!-- Mobile Sidebar User Profile -->
+            <div class="flex items-center flex-shrink-0 px-4 mb-6">
+                <div class="bg-indigo-100 p-2 rounded-lg mr-3">
+                    <i class="fas fa-user text-indigo-600"></i>
+                </div>
+                <div>
+                    <p class="font-medium text-gray-900">John Doe</p>
+                    <p class="text-sm text-gray-500">Premium Member</p>
+                </div>
+                <button id="closeSidebar" class="ml-auto text-gray-400 hover:text-gray-500">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Sidebar Menu Items -->
+            <nav class="flex-1 px-2 space-y-1">
+                <a href="index.html" class="sidebar-item active text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-chart-pie text-gray-500 mr-3 flex-shrink-0"></i>
+                    Dashboard
+                </a>
+                
+                <a href="my-resumes.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-file-alt text-gray-500 mr-3 flex-shrink-0"></i>
+                    My Resumes
+                </a>
+                
+                <a href="builder.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-magic text-gray-500 mr-3 flex-shrink-0"></i>
+                    Resume Builder
+                </a>
+                
+                <a href="matcher.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-search text-gray-500 mr-3 flex-shrink-0"></i>
+                    Job Matcher
+                </a>
+                
+                <a href="alert.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-bell text-gray-500 mr-3 flex-shrink-0"></i>
+                    Alerts
+                </a>
+                
+                <a href="settings.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-cog text-gray-500 mr-3 flex-shrink-0"></i>
+                    Settings
+                </a>
+
+                <a href="templates.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-clone text-gray-500 mr-3 flex-shrink-0"></i>
+                    Templates
+                </a>
+
+                <a href="tips.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-briefcase text-gray-500 mr-3 flex-shrink-0"></i>
+                    Career Tips
+                </a>
+
+                <a href="pricing.html" class="sidebar-item text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-dollar-sign text-gray-500 mr-3 flex-shrink-0"></i>
+                    Pricing
+                </a>
+            </nav>
+            
+            <!-- Mobile Sidebar Upgrade Banner -->
+            <div class="mt-auto px-4 py-4">
+                <div class="bg-indigo-50 rounded-lg p-3 text-center">
+                    <p class="text-xs text-indigo-600 font-medium mb-1">UPGRADE TO PRO</p>
+                    <p class="text-xs text-gray-600 mb-2">Unlock all features and templates</p>
+                    <button id="mobileUpgradeBtn" class="w-full gradient-bg text-white py-1 rounded-md text-xs font-medium hover:opacity-90 transition">
+                        Upgrade Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <header class="text-center">
+            <h1 class="text-3xl font-bold text-gray-800">My Resume</h1>
+            <p class="text-gray-500 mt-2">Upload, preview, and analyze your resume.</p>
+        </header>
+        
+        <!-- File Upload Section -->
+        <section class="mt-8">
+            <div id="dropZone" class="file-upload border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                <p class="text-gray-500">Drag and drop your resume here, or click to upload.</p>
+                <input type="file" id="resumeUpload" class="hidden">
+                <button onclick="document.getElementById('resumeUpload').click()" class="gradient-bg text-white px-4 py-2 rounded-md text-sm font-medium mt-4 hover:opacity-90 transition">
+                    Upload Resume
+                </button>
+            </div>
+            
+            <!-- File Info -->
+            <div id="fileInfo" class="hidden mt-4 bg-white shadow rounded-lg p-6">
+                <p class="text-gray-800"><strong>File Name:</strong> <span id="fileName"></span></p>
+                <p class="text-gray-800"><strong>File Size:</strong> <span id="fileSize"></span></p>
+                <div class="mt-4">
+                    <button id="removeFile" class="text-red-500 hover:text-red-700">Remove File</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Analysis Results -->
+        <section id="analysisResults" class="hidden mt-8 bg-white shadow rounded-lg p-6">
+            <h2 class="text-xl font-bold text-gray-800">Analysis Results</h2>
+            <p class="text-gray-500 mt-2">Here are the results of your resume analysis:</p>
+            <div class="mt-4">
+                <p><strong>Overall Score:</strong> <span id="overallScore">0</span></p>
+                <div class="progress-bar mt-2">
+                    <div id="overallScoreBar" class="progress-fill" style="width: 0%;"></div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <p><strong>Content Score:</strong></p>
+                <div class="skill-meter">
+                    <div class="skill-level" style="width: 0%;"></div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <p><strong>Keyword Score:</strong></p>
+                <div class="skill-meter">
+                    <div class="skill-level" style="width: 0%;"></div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <p><strong>Format Score:</strong></p>
+                <div class="skill-meter">
+                    <div class="skill-level" style="width: 0%;"></div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <p><strong>Impact Score:</strong></p>
+                <div class="skill-meter">
+                    <div class="skill-level" style="width: 0%;"></div>
+                </div>
+            </div>
+            <p id="scoreFeedback" class="mt-4 text-gray-500"></p>
+        </section>
+    </main>
+    
+    <footer class="bg-white shadow-inner py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <p class="text-gray-500 text-sm">© 2025 ResumeGenius. Praise Ogooluwa.</p>
+                <div class="flex space-x-4">
+                    <a href="privacy.html" class="text-gray-500 hover:text-gray-800">Privacy Policy</a>
+                    <a href="terms.html" class="text-gray-500 hover:text-gray-800">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="js/my-resumes.js"></script>
+</body>
+</html>
