@@ -69,7 +69,7 @@ This project is protected by copyright. You may **not**:
 - Change colors, branding, or structure and claim ownership
 - Use this as a base template for your own resume product without permission
 
-For permission requests, contact: **[your.email@example.com]**
+For permission requests, contact: **[praiseogooluwa118@gmail.com]**
 
 ---
 
